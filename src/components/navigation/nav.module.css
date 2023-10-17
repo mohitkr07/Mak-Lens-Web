@@ -1,0 +1,65 @@
+.nav {
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  padding: 0 4rem;
+  justify-content: space-between;
+  align-items: center;
+    position: sticky;
+    top: 0;
+}
+
+.logo{
+    width: 150px;
+}
+.logo h3{
+    font-family: 'Satisfy', cursive;
+    font-size: 150%;
+}
+
+.search-bar1 {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2.8rem;
+  background-color: aliceblue;
+  padding: 0 10px;
+  border-radius: 3px;
+  border: 1px solid grey;
+}
+.search-bar1:focus-within {
+  border: 1px solid; /* Change the border of .search-bar1 when input is focused */
+}
+
+.search-bar1 input {
+  width: 95%;
+  height: 100%;
+  text-align: left;
+  padding: 0 1rem;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+.search-bar1 i {
+  flex-grow: 1;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 120%;
+  background-color: solid;
+  cursor: pointer;
+  color: rgb(99, 99, 99);
+}
+
+.nav-button ul{
+    list-style-type: none;
+    display: flex;
+}
+.nav-button ul li{
+    margin: 0 1rem;
+    cursor: pointer;
+    font-size: 90%;
+    font-weight: bold;
+}
