@@ -5,16 +5,17 @@
   padding: 0 4rem;
   justify-content: space-between;
   align-items: center;
-    position: sticky;
-    top: 0;
+  position: sticky;
+  top: 0;
+  background-color: #fff;
 }
 
-.logo{
-    width: 150px;
+.logo {
+  width: 150px;
 }
-.logo h3{
-    font-family: 'Satisfy', cursive;
-    font-size: 150%;
+.logo h3 {
+  font-family: "Satisfy", cursive;
+  font-size: 150%;
 }
 
 .search-bar1 {
@@ -53,13 +54,13 @@
   color: rgb(99, 99, 99);
 }
 
-.nav-button ul{
-    list-style-type: none;
-    display: flex;
+.nav-button ul {
+  list-style-type: none;
+  display: flex;
 }
-.nav-button ul li{
-    margin: 0 1rem;
-    cursor: pointer;
-    font-size: 90%;
-    font-weight: bold;
+.nav-button ul li {
+  margin: 0 1rem;
+  cursor: pointer;
+  font-size: 90%;
+  font-weight: bold;
 }

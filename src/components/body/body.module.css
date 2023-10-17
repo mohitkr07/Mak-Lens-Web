@@ -1,5 +1,30 @@
 .body{
     flex-grow: 1;
-    width: 100%;
-    
+    width: 88%;
+    align-self: center;
+    columns: 3;
+    column-gap: 10px;
+    margin: 10px;
 }
+/* display: grid;
+grid-template-columns: repeat(3, 1fr); */
+
+.cell{
+    break-inside: avoid;
+    width: 28rem;
+}
+
+
+@media only screen and (max-width: 900px) {
+    
+    .body{
+        columns: 2;
+    }
+}
+@media only screen and (max-width: 600px) {
+    
+    .body{
+        columns: 1;
+    }
+}
+
