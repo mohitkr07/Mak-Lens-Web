@@ -36,11 +36,13 @@ grid-template-columns: repeat(3, 1fr); */
     .body{
         columns: 2;
     }
+
 }
 @media only screen and (max-width: 600px) {
     
     .body{
         columns: 1;
     }
+    
 }
 

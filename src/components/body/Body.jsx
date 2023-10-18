@@ -8,29 +8,29 @@ const Body = () => {
   const [feedData, setFeedData] = useState([]);
   const [searchData, setSearchData] = useState([]);
   const [page, setPage] = useState(1);
-  const [page2, setPage2] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
-
-      fetchFeed();
-    
-  }, [location.search, page]);
-
-  useEffect(()=>{
     const queryParams = new URLSearchParams(location.search);
     const query = queryParams.get("query");
+    const slug = queryParams.get("slug");
+
+    if (slug) {
+      sessionStorage.setItem("flag", 1);
+      return;
+    }
+
+    if (sessionStorage.getItem("flag") == 1) return;
 
     if (query) {
-      fetchData(query, page2);
+      fetchData(query, page);
       setSearchQuery(query);
     } else {
       fetchFeed();
     }
-
-  },[location.search, page2])
+  }, [location.search, page]);
 
   const fetchData = async (query, currentPage) => {
     try {
@@ -39,7 +39,7 @@ const Body = () => {
 
       if (response.status === 200) {
         const resData = response.data.results;
-        if (currentPage > 1) {
+        if (currentPage > 1 && sessionStorage.getItem("newSearch") == 0) {
           setSearchData([...searchData, ...resData]);
         } else {
           setSearchData(resData);
@@ -58,7 +58,7 @@ const Body = () => {
 
       if (response.status === 200) {
         const resData = response.data;
-        if (page > 1) {
+        if (page > 1 && sessionStorage.getItem("newSearch") == 0) {
           setFeedData([...feedData, ...resData]);
         } else {
           setFeedData(resData);
@@ -79,9 +79,12 @@ const Body = () => {
     } else {
       navigate(`/?slug=${slug}`);
     }
+    console.log(page);
   };
 
   const handleLoad = () => {
+    sessionStorage.setItem("flag", 0);
+    sessionStorage.setItem("newSearch", 0);
     setPage(page + 1);
   };
 
