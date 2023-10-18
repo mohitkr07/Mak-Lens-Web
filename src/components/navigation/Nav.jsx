@@ -37,6 +37,7 @@ const Nav = () => {
   }, [location.search]);
 
   useEffect(() => {
+    if(localStorage.getItem("theme"))
     document.body.className = localStorage.getItem("theme");
   }, []);
 
@@ -192,7 +193,7 @@ const Nav = () => {
       {home && (
         <div className={styles["home"]}>
           <div className={styles["home-content"]}>
-            <h2>Download High Quality Images</h2>
+            <h2 style={{color: "#fff", marginBottom: "10px"}}>Download High Quality Images</h2>
             <input
               type="text"
               placeholder="Search"

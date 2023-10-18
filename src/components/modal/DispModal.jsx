@@ -39,8 +39,6 @@ const DispModal = (props) => {
     }
   };
 
-  const [imageURL, setImageURL] = useState("");
-
   const downloadImage = async () => {
     try {
       const response = await fetch(data.urls.full);
