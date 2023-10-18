@@ -161,7 +161,7 @@ const DispModal = (props) => {
                 <div className={`${styles["tags"]}`}>
                   {data.tags.map(
                     (item, index) =>
-                      index < 10 && <p className={`${"sub-div2"}`} key={index}>{item.title}</p>
+                      index < 15 && <p className={`${"sub-div2"}`} key={index}>{item.title}</p>
                   )}
                 </div>
               </div>
