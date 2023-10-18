@@ -9,17 +9,17 @@ const ImgCard = (props) => {
       <div className={styles["contributer"]}>
         <div className={styles["user"]}>
           <div className={styles["user-pic"]}>
-            <img src="images/user.jpg" />
+            <img src={props.userPic} />
           </div>
 
           <span className={styles["user-details"]}>
-            <p>Mohit Kumar</p>
-            <p>@makarya</p>
+            <p>{props.name}</p>
+            <p>@{props.username}</p>
           </span>
         </div>
         <div className={styles["likes"]}>
           <i class="fa-solid fa-heart" />
-          <p>129</p>
+          <p>{props.likes}</p>
         </div>
       </div>
     </div>

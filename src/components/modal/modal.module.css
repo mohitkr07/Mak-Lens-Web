@@ -20,10 +20,11 @@
 }
 
 .image{
-    height: 70%;
+    max-height: 70%;
 }
 .image img{
-    height: 100%;
+    max-height: 100%;
+    max-width: 100%;
 }
 .info{
     flex-grow: 1;
@@ -117,14 +118,111 @@
 .tags{
     width: 100%;
     display: flex;
-    flex-grow: 1;
+    /* flex-grow: 1; */
     flex-wrap: wrap;
     padding: 5px 0 0 0;
 }
 .tags p{
     margin-right: 15px;
     border-radius: 6px;
+    margin-top: 10px;
     background-color: aliceblue;
     height: fit-content;
     padding: 3px 10px;
+}
+
+.social-res, .pic-info-res{
+    display: none;
+}
+
+@media only screen and (max-width: 600px){
+    /*  */
+    .profile{
+        /* width: 40%; */
+        /* height: 100%; */
+        /* background-color: blue; */
+        display: flex;
+        align-items: flex-start;
+        margin-left: 0px;
+        justify-content: center;
+        flex-direction: column;
+
+    }
+    .profile-info > p{
+        display: none;
+    }
+    .social-res{
+        display: flex;
+        margin-top: 10px;
+    }
+    .social-res > p{
+        margin-right: 10px;
+        font-size: 80%;
+    }
+
+    .pic-info{
+        display: none;
+    }
+    .pic-info-res{
+        display: flex;
+        flex-direction: column;
+        margin: 0 5px 0 20px;
+        font-size: 90%;
+    }
+    .pic-info-res >span:nth-child(1) button{
+        width: 11.5rem;
+        height: 3rem;
+        margin: 0 0 10px 0;
+        font-size: 120%;
+        border: none;
+        outline: none;
+        background: #3CB46E;
+        color: #fff;
+        border-radius: 5px;
+    }
+    .pic-info-res>span:nth-child(2){
+        display: flex;
+        align-items: center;
+    }
+
+    .downloads{
+        display: flex;
+        margin-right: 2rem;
+    }
+    .likes{
+        display: flex;
+    }
+    .likes i{
+        margin-right: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+/*  */
+
+.related-tags{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin-top: 10px;
+    font-size: 75%;
+
+    padding: 0 0px;
+}
+.related-tags > p{
+    text-align: left;
+    font-weight: bold;
+}
+.tags{
+    flex-grow: 0;
+}
+.tags p{
+    margin-right: 15px;
+    margin-top: 10px;
+    border-radius: 6px;
+    background-color: aliceblue;
+    height: fit-content;
+    padding: 3px 10px;
+}
+   
 }

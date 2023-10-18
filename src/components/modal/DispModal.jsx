@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import styles from "./modal.module.css";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const DispModal = (props) => {
   const [data, setData] = useState();
+  const navigate = useNavigate();
 
   const location = useLocation();
 
@@ -42,6 +43,7 @@ const DispModal = (props) => {
     if (e.target == e.currentTarget) {
       props.onClick(false);
       document.body.style.overflowY = "visible";
+      navigate(-1);
     }
   };
 
@@ -56,17 +58,35 @@ const DispModal = (props) => {
             <div className={styles["info"]}>
               <div className={styles["info-top"]}>
                 <div className={styles["profile"]}>
-                  <div className={styles["profile-pic"]}>
-                    <img src={data.user.profile_image.large} />
-                  </div>
-                  <div className={styles["profile-info"]}>
-                    <span>
-                      <p>{data.user.name}</p>
-                      <p>@{data.user.username}</p>
-                    </span>
-                    <p>{data.user.social.instagram_username}</p>
-                    <p>{data.user.social.twitter_username}</p>
-                  </div>
+                  <span style={{ display: "flex" }}>
+                    <div className={styles["profile-pic"]}>
+                      <img src={data.user.profile_image.large} />
+                    </div>
+                    <div className={styles["profile-info"]}>
+                      <span>
+                        <p>{data.user.name}</p>
+                        <p>@{data.user.username}</p>
+                      </span>
+                      <i class="fa-brands fa-instagram" />
+                      <p style={{ marginLeft: "5px" }}>
+                        {data.user.social.instagram_username}
+                      </p>
+                      <i class="fa-brands fa-x-twitter" />
+                      <p style={{ marginLeft: "5px" }}>
+                        {data.user.social.twitter_username}
+                      </p>
+                    </div>
+                  </span>
+                  <span className={styles["social-res"]}>
+                    <i class="fa-brands fa-instagram" />
+                    <p style={{ marginLeft: "5px" }}>
+                      {data.user.social.instagram_username}
+                    </p>
+                    <i class="fa-brands fa-x-twitter" />
+                    <p style={{ marginLeft: "5px" }}>
+                      {data.user.social.twitter_username}
+                    </p>
+                  </span>
                 </div>
                 <div className={styles["pic-info"]}>
                   <div className={styles["downloads"]}>
@@ -77,13 +97,30 @@ const DispModal = (props) => {
                     <p>{data.likes}</p>
                   </div>
                 </div>
+
+                <div className={styles["pic-info-res"]}>
+                  <span>
+                    <button>Download</button>
+                  </span>
+                  <span>
+                    <div className={styles["downloads"]}>
+                      <p style={{ marginRight: "5px" }}>{data.downloads}</p>
+                      <p> downloads</p>
+                    </div>
+                    <div className={styles["likes"]}>
+                      <i className="fa-solid fa-heart" />
+                      <p>{data.likes}</p>
+                    </div>
+                  </span>
+                </div>
               </div>
               <div className={styles["related-tags"]}>
                 <p>Related Tags</p>
                 <div className={styles["tags"]}>
-                  {data.tags.map((item, index) => (
-                    <p key={index}>{item.title}</p>
-                  ))}
+                  {data.tags.map(
+                    (item, index) =>
+                      index < 25 && <p key={index}>{item.title}</p>
+                  )}
                 </div>
               </div>
             </div>

@@ -36,14 +36,14 @@ const Body = () => {
       console.error("Error fetching data:", error);
     }
   };
-  
+
   const fetchFeed = async () => {
     try {
       const url =
-      "https://api.unsplash.com/photos?page=1&client_id=56AdQzhmUDi3e4eJXdfKEUUfmW9lSpYzAampuJy0mRs";
-      
+        "https://api.unsplash.com/photos?page=1&client_id=56AdQzhmUDi3e4eJXdfKEUUfmW9lSpYzAampuJy0mRs";
+
       const response = await axios.get(url);
-      
+
       if (response.status === 200) {
         const data = response.data;
         setData(data);
@@ -53,7 +53,7 @@ const Body = () => {
       console.error("Error fetching data:", error);
     }
   };
-  
+
   // -----------------------
 
   const navigate = useNavigate();
@@ -62,13 +62,10 @@ const Body = () => {
     const queryParams = new URLSearchParams(location.search);
     const query = queryParams.get("query");
 
-    if(query)
-    {
-      navigate(`/?query=${query}&slug=${slug}`)
-    }
-    else
-      navigate(`/?slug=${slug}`);
-    console.log(slug)
+    if (query) {
+      navigate(`/?query=${query}&slug=${slug}`);
+    } else navigate(`/?slug=${slug}`);
+    console.log(slug);
   };
 
   return (
@@ -76,11 +73,19 @@ const Body = () => {
       {data &&
         data.map((item, index) => (
           <div
-            onClick={() => {handleImgClick(item.id); }}
+            onClick={() => {
+              handleImgClick(item.id);
+            }}
             className={styles["cell"]}
             key={index}
           >
-            <ImgCard URL={item.urls.regular} />
+            <ImgCard
+              name={item.user.name}
+              username={item.user.username}
+              likes={item.likes}
+              URL={item.urls.regular}
+              userPic = {item.user.profile_image.large}
+            />
           </div>
         ))}
     </div>
