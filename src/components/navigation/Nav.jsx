@@ -19,12 +19,15 @@ const Nav = () => {
 
   const [showMenu, setShowMenu] = useState(false);
 
+  const [home, setHome] = useState(0);
+
   useEffect(() => {
     const query = new URLSearchParams(location.search);
     const slug = query.get("slug");
     const q = query.get("query");
 
-    if(!slug && !q)sessionStorage.setItem("home", 1)
+    if (!slug && !q) setHome(1);
+    else setHome(0);
 
     if (slug) {
       handleModal();
@@ -35,7 +38,6 @@ const Nav = () => {
 
   useEffect(() => {
     document.body.className = localStorage.getItem("theme");
-    sessionStorage.setItem("home", 1);
   }, []);
 
   const handleSearch = () => {
@@ -129,7 +131,11 @@ const Nav = () => {
               <li>
                 <FormControlLabel
                   onChange={handleThemeChange}
-                  control={<Switch checked={localStorage.getItem("theme")=="dark-theme"} />}
+                  control={
+                    <Switch
+                      checked={localStorage.getItem("theme") == "dark-theme"}
+                    />
+                  }
                   label="Dark Mode"
                 />
               </li>
@@ -176,27 +182,31 @@ const Nav = () => {
         <div>
           <FormControlLabel
             onChange={handleThemeChange}
-            control={<Switch checked={localStorage.getItem("theme")=="dark-theme"} />}
+            control={
+              <Switch checked={localStorage.getItem("theme") == "dark-theme"} />
+            }
             label="Dark Mode"
           />
         </div>
       </nav>
-      {sessionStorage.getItem("home")==1 ? <div className={styles["home"]}>
-        <div className={styles["home-content"]}>
-          <h2>Download High Quality Images</h2>
-          <input
-            type="text"
-            placeholder="Search"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                handleSearch();
-              }
-            }}
-          />
+      {home && (
+        <div className={styles["home"]}>
+          <div className={styles["home-content"]}>
+            <h2>Download High Quality Images</h2>
+            <input
+              type="text"
+              placeholder="Search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleSearch();
+                }
+              }}
+            />
+          </div>
         </div>
-      </div>: null}
+      )}
     </>
   );
 };
