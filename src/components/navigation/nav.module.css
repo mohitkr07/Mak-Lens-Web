@@ -148,7 +148,9 @@
       display: flex;
       flex-direction: column;
       width: 100%;
+      margin-left: 2rem;
     }
+
     .nav-button-2 ul{
       list-style-type: none;
       display: flex;
@@ -157,13 +159,19 @@
     }
 
     .nav-button-2 ul li{
-      height: 2rem;
+      height: 2.5rem;
       display: flex;
       justify-content: flex-start;
       align-items: center;
-      margin: 5px 0;
+      margin: 2px 0;
       width: 100%;
       cursor: pointer;
+      padding: 5px;
+      border-radius: 2px;
+    }
+
+    .nav-button-2 ul li:active{
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     }
 
     .search-bar1 {
