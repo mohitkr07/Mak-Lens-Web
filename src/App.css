@@ -1,0 +1,38 @@
+
+.dark-theme{
+    --main-background: #232323;
+    --sub-background: #141414;
+    --text-color: #fff;
+}
+
+.light-theme{
+    --main-background: #fff;
+    --sub-background: rgb(236, 236, 236);
+    --text-color: black;
+}
+
+body {
+    background-color: var(--main-background);
+    color: var(--text-color);
+}
+  
+.sp-button {
+    background-color: var(--main-background);
+    color: var(--text-color);
+}
+
+.main-div{
+    background-color: var(--main-background);
+}
+.sub-div{
+    background-color: var(--sub-background);
+}
+
+.sub-span{
+    background-color: var(--sub-background);
+}
+
+.sub-div2{
+    background-color: #fff;
+    color: #141414;
+}

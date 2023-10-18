@@ -2,11 +2,11 @@ import styles from "./cards.module.css";
 
 const ImgCard = (props) => {
   return (
-    <div className={`${styles["img-card"]}`}>
+    <div className={`${styles["img-card"]} ${"sub-div"}`}>
       <div className={styles["thumbnail"]}>
         <img src={props.URL} />
       </div>
-      <div className={styles["contributer"]}>
+      <div className={`${styles["contributer"]}`}>
         <div className={styles["user"]}>
           <div className={styles["user-pic"]}>
             <img src={props.userPic} />

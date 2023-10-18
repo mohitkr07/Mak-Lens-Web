@@ -39,6 +39,27 @@ const DispModal = (props) => {
     }
   };
 
+  const [imageURL, setImageURL] = useState("");
+
+  const downloadImage = async () => {
+    try {
+      const response = await fetch(data.urls.full);
+      const blob = await response.blob();
+      const objectURL = URL.createObjectURL(blob);
+
+      const downloadLink = document.createElement("a");
+      downloadLink.href = objectURL;
+      downloadLink.download = data.alt_description;
+      downloadLink.style.display = "none";
+
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+    } catch (error) {
+      console.error("Something went wrong", error);
+    }
+  };
+
   const closeModal = (e) => {
     if (e.target == e.currentTarget) {
       props.onClick(false);
@@ -51,7 +72,7 @@ const DispModal = (props) => {
     <>
       {data && (
         <div onClick={closeModal} className={styles["modal"]}>
-          <div className={styles["popup"]}>
+          <div className={`${styles["popup"]} ${"main-div"}`}>
             <div className={styles["image"]}>
               <img src={data.urls.regular} />
             </div>
@@ -67,44 +88,65 @@ const DispModal = (props) => {
                         <p>{data.user.name}</p>
                         <p>@{data.user.username}</p>
                       </span>
-                      <i class="fa-brands fa-instagram" />
+                      <i className={`${"fa-brands fa-instagram"} ${styles["hide"]}`} />
                       <p style={{ marginLeft: "5px" }}>
                         {data.user.social.instagram_username}
                       </p>
-                      <i class="fa-brands fa-x-twitter" />
+                      <i className={`${"fa-brands fa-x-twitter"} ${styles["hide"]}`} />
                       <p style={{ marginLeft: "5px" }}>
                         {data.user.social.twitter_username}
                       </p>
                     </div>
                   </span>
+
                   <span className={styles["social-res"]}>
-                    <i class="fa-brands fa-instagram" />
-                    <p style={{ marginLeft: "5px" }}>
-                      {data.user.social.instagram_username}
-                    </p>
-                    <i class="fa-brands fa-x-twitter" />
-                    <p style={{ marginLeft: "5px" }}>
-                      {data.user.social.twitter_username}
-                    </p>
+                    {data.user.social.instagram_username && (
+                      <>
+                        <i class="fa-brands fa-instagram" />
+                        <p style={{ marginLeft: "5px" }}>
+                          {data.user.social.instagram_username}
+                        </p>
+                      </>
+                    )}
+                    {data.user.social.twitter_username && (
+                      <>
+                        <i class="fa-brands fa-x-twitter" />
+                        <p style={{ marginLeft: "5px" }}>
+                          {data.user.social.twitter_username}
+                        </p>
+                      </>
+                    )}
                   </span>
                 </div>
                 <div className={styles["pic-info"]}>
-                  <div className={styles["downloads"]}>
-                    <p>{data.downloads} downloads</p>
-                  </div>
-                  <div className={styles["likes"]}>
-                    <i className="fa-solid fa-heart" />
-                    <p>{data.likes}</p>
-                  </div>
+                  <span style={{ display: "flex", alignItems: "flex-end" }}>
+                    <div className={styles["downloads"]}>
+                      <p>{data.downloads} downloads</p>
+                    </div>
+                    <div className={styles["likes"]}>
+                      <i className="fa-solid fa-heart" />
+                      <p>{data.likes}</p>
+                    </div>
+                  </span>
+                  <button
+                    className={styles["download-bt"]}
+                    onClick={downloadImage}
+                  >
+                    Download
+                  </button>
                 </div>
 
                 <div className={styles["pic-info-res"]}>
                   <span>
-                    <button>Download</button>
+                    <button onClick={downloadImage}>Download</button>
                   </span>
                   <span>
                     <div className={styles["downloads"]}>
-                      <p style={{ marginRight: "5px" }}>{data.downloads}</p>
+                      <p style={{ marginRight: "5px" }}>
+                        {data.downloads >= 1000
+                          ? (data.downloads / 1000).toFixed(1) + "k"
+                          : data.downloads}
+                      </p>
                       <p> downloads</p>
                     </div>
                     <div className={styles["likes"]}>
@@ -116,10 +158,10 @@ const DispModal = (props) => {
               </div>
               <div className={styles["related-tags"]}>
                 <p>Related Tags</p>
-                <div className={styles["tags"]}>
+                <div className={`${styles["tags"]}`}>
                   {data.tags.map(
                     (item, index) =>
-                      index < 25 && <p key={index}>{item.title}</p>
+                      index < 15 && <p className={`${"sub-div2"}`} key={index}>{item.title}</p>
                   )}
                 </div>
               </div>

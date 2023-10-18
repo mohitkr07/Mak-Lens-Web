@@ -11,7 +11,23 @@ grid-template-columns: repeat(3, 1fr); */
 
 .cell{
     break-inside: avoid;
-    width: 28rem;
+}
+
+.load-button{
+    margin: 1rem;
+}
+.load-button button{
+    width: 40%;
+    height: 4rem;
+    outline: none;
+    border: none;
+    font-size: 120%;
+    cursor: pointer;
+    /* background-color: rgb(162, 162, 162);
+    color: white; */
+}
+.load-button button:active{
+    background-color: rgb(146, 146, 146);
 }
 
 

@@ -1,3 +1,7 @@
+:root{
+
+}
+
 .modal{
     position: fixed;
     top: 0;
@@ -14,7 +18,7 @@
 .popup{
     width: 75%;
     height: 93%;
-    background-color: #fff;
+    /* background-color: #fff; */
     display: flex;
     flex-direction: column;
 }
@@ -36,7 +40,7 @@
 .info-top{
     width: 100%;
     height: 30%;
-    background-color: white;
+    background-color: transparent;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -72,7 +76,6 @@
     text-align: left;
     font-size: 85%;
     font-weight: bold;
-    color: rgb(54, 54, 54);
 }
 .profile-info span > p:nth-child(2){
     font-size: 75%;
@@ -87,10 +90,11 @@
     display: flex;
     margin-right: 25px;
     font-size: 85%;
+    align-items: flex-end;
 }
 .downloads{
     display: flex;
-    margin-right: 5rem;
+    margin-right: 2rem;
 }
 .likes{
     display: flex;
@@ -131,12 +135,29 @@
     padding: 3px 10px;
 }
 
+.download-bt{
+    width: 11.5rem;
+        height: 2.7rem;
+        margin: 5px 5px 0px 25px;
+        font-size: 120%;
+        border: none;
+        outline: none;
+        background: #3CB46E;
+        color: #fff;
+        border-radius: 5px;
+        align-self: flex-end;
+        cursor: pointer;
+}
+
 .social-res, .pic-info-res{
     display: none;
 }
 
 @media only screen and (max-width: 600px){
     /*  */
+    .popup{
+        height: 85%;
+    }
     .profile{
         /* width: 40%; */
         /* height: 100%; */
@@ -154,23 +175,27 @@
     .social-res{
         display: flex;
         margin-top: 10px;
+        font-size: 70%;
     }
     .social-res > p{
         margin-right: 10px;
-        font-size: 80%;
     }
 
     .pic-info{
         display: none;
     }
+    .hide{
+        display: none;
+    }
     .pic-info-res{
         display: flex;
         flex-direction: column;
-        margin: 0 5px 0 20px;
+        margin: 0 5px 0 15px;
         font-size: 90%;
+        
     }
     .pic-info-res >span:nth-child(1) button{
-        width: 11.5rem;
+        width: 100%;
         height: 3rem;
         margin: 0 0 10px 0;
         font-size: 120%;

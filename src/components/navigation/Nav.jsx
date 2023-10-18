@@ -6,10 +6,29 @@ import Switch from "@mui/material/Switch";
 import DispModal from "../modal/DispModal";
 
 const Nav = () => {
-  const [query, setQuery] = useState(""); // State variable to track the query
+  const [query, setQuery] = useState("");
+
+  const [theme, setTheme] = useState("light-theme");
 
   const navigate = useNavigate();
   const location = useLocation();
+
+  const [popModal, hideModal] = useState(false);
+
+  useEffect(() => {
+    const query = new URLSearchParams(location.search);
+    const slug = query.get("slug");
+
+    if (slug) {
+      handleModal();
+    } else {
+      closeModal(false);
+    }
+  }, [location.search]);
+
+  useEffect(() => {
+    document.body.className = localStorage.getItem("theme");
+  }, []);
 
   const handleSearch = () => {
     if (query) {
@@ -17,36 +36,35 @@ const Nav = () => {
     }
   };
 
-  
-
-  const[popModal, hideModal] = useState(false);
-
-  const handleModal = ()=>{
-    hideModal(!popModal)
-
-  }
-  const closeModal = (rec)=>{
+  const handleModal = () => {
+    hideModal(true);
+  };
+  const closeModal = (rec) => {
     hideModal(rec);
+  };
 
-  }
+  const handleThemeChange = (e) => {
+    // if (theme === "light-theme") setTheme("dark-theme");
+    // else setTheme("light-theme");
+    let newTheme = theme === "light-theme" ? "dark-theme" : "light-theme";
+    localStorage.setItem("theme", newTheme);
+    document.body.className = newTheme;
+    setTheme(newTheme);
+  };
 
-  useEffect(()=>{
-    const query = new URLSearchParams(location.search)
-    const slug = query.get("slug")
-
-    if(slug){
-      handleModal()
-    }
-  },[location.search])
+  const moveToHome = () => {
+    setQuery("");
+    navigate("/");
+  };
 
   return (
     <>
       {popModal && <DispModal onClick={closeModal} />}
-      <nav className={styles["nav"]}>
+      <nav className={`${styles["nav"]} ${"main-div"}`}>
         <div style={{ cursor: "pointer" }} className={styles["logo"]}>
           <h3
             onClick={() => {
-              navigate("/");
+              moveToHome();
             }}
           >
             Tars Images
@@ -77,7 +95,11 @@ const Nav = () => {
           </ul>
         </div>
         <div>
-          <FormControlLabel control={<Switch />} label="Dark Mode" />
+          <FormControlLabel
+            onChange={handleThemeChange}
+            control={<Switch />}
+            label="Dark Mode"
+          />
         </div>
       </nav>
     </>
