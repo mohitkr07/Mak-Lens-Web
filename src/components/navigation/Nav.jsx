@@ -190,7 +190,7 @@ const Nav = () => {
           />
         </div>
       </nav>
-      {home && (
+      {home ? (
         <div className={styles["home"]}>
           <div className={styles["home-content"]}>
             <h2 style={{color: "#fff", marginBottom: "10px"}}>Download High Quality Images</h2>
@@ -207,7 +207,7 @@ const Nav = () => {
             />
           </div>
         </div>
-      )}
+      ): null}
     </>
   );
 };
